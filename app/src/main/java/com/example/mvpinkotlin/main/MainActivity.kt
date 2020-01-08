@@ -25,6 +25,7 @@ class MainActivity : AppCompatActivity(),
         presenter.data()
 
         println("hello")
+        println("hello world")
 
 
 
