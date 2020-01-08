@@ -2,13 +2,12 @@ package com.example.mvpinkotlin.main
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import androidx.recyclerview.widget.DividerItemDecoration
-import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
+import androidx.recyclerview.widget.*
 import com.example.mvpinkotlin.R
 import com.example.mvpinkotlin.model.CatalogProductsItem
 import com.example.mvpinkotlin.model.Response
+import com.example.mvpinkotlin.utils.GridItemDecoration
+import com.example.mvpinkotlin.utils.GridSpacingItemDecoration
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity(),
@@ -34,8 +33,10 @@ class MainActivity : AppCompatActivity(),
     override fun setUpRecData(list: ArrayList<CatalogProductsItem>) {
 
         val apapter=RecApapter(this,list)
-        rec.layoutManager=GridLayoutManager(this,2)
-        rec.addItemDecoration(DividerItemDecoration(this,GridLayoutManager.HORIZONTAL))
+        rec.layoutManager=StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)
+     //   rec.addItemDecoration(DividerItemDecoration(this,GridLayoutManager.HORIZONTAL))
+        rec.addItemDecoration(GridSpacingItemDecoration(2,5,true))
+      //  rec.addItemDecoration(GridItemDecoration(10,2))
         rec.adapter=apapter
 
     }
