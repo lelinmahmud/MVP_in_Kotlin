@@ -6,36 +6,14 @@
     android:layout_height="match_parent"
     tools:context=".main.MainActivity"
     >
-
-
-
-    <com.facebook.shimmer.ShimmerFrameLayout
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:id="@+id/shmmier"
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/rec2"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/rec"
-        >
-
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:background="?attr/selectableItemBackground">
-
-            <include layout="@layout/shimmer_demo" />
-            <include layout="@layout/shimmer_demo"/>
-            <include layout="@layout/shimmer_demo"/>
-            <include layout="@layout/shimmer_demo"/>
-            <include layout="@layout/shimmer_demo"/>
-        </LinearLayout>
-
-
-
-    </com.facebook.shimmer.ShimmerFrameLayout>
+        app:layout_constraintBottom_toTopOf="@id/rec"/>
 
 
     <androidx.recyclerview.widget.RecyclerView
@@ -44,12 +22,9 @@
         android:layout_height="match_parent"
         android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@id/shmmier"
-        app:layout_constraintStart_toStartOf="@id/shmmier"
-        app:layout_constraintTop_toBottomOf="@id/shmmier" />
-
-
-
+        app:layout_constraintEnd_toEndOf="@id/rec2"
+        app:layout_constraintStart_toStartOf="@id/rec2"
+        app:layout_constraintTop_toBottomOf="@id/rec2" />
 
 
 
