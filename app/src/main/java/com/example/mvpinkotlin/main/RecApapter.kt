@@ -32,6 +32,7 @@ class RecApapter(
         Glide.with(context).load(BASE_URL+list.get(position).productImage).into(holder.imageView)
         holder.p_name.text="${list.get(position).productName}"
         holder.view.tag= position
+
     }
 
     override fun getItemCount(): Int {

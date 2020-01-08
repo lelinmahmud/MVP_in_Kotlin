@@ -2,6 +2,7 @@ package com.example.mvpinkotlin.main
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import androidx.recyclerview.widget.*
 import com.example.mvpinkotlin.R
 import com.example.mvpinkotlin.model.CatalogProductsItem
@@ -20,6 +21,7 @@ class MainActivity : AppCompatActivity(),
         setContentView(R.layout.activity_main)
         presenter= MainPresenter(this)
         list= ArrayList()
+        shmmier.startShimmer()
 
         presenter.data()
 
@@ -37,7 +39,10 @@ class MainActivity : AppCompatActivity(),
      //   rec.addItemDecoration(DividerItemDecoration(this,GridLayoutManager.HORIZONTAL))
         rec.addItemDecoration(GridSpacingItemDecoration(2,5,true))
       //  rec.addItemDecoration(GridItemDecoration(10,2))
+        shmmier.stopShimmer();
         rec.adapter=apapter
+        shmmier.visibility=View.GONE
+        rec.visibility=View.VISIBLE
 
     }
 }

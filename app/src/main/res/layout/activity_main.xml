@@ -7,17 +7,48 @@
     tools:context=".main.MainActivity"
     >
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rec"
+
+
+    <com.facebook.shimmer.ShimmerFrameLayout
         android:layout_width="0dp"
         android:layout_height="0dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        android:id="@+id/shmmier"
         app:layout_constraintTop_toTopOf="parent"
-        android:paddingStart="@dimen/_5sdp"
-        android:paddingEnd="@dimen/_5sdp"
-        />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/rec"
+        >
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="?attr/selectableItemBackground">
+
+            <include layout="@layout/shimmer_demo" />
+            <include layout="@layout/shimmer_demo"/>
+            <include layout="@layout/shimmer_demo"/>
+            <include layout="@layout/shimmer_demo"/>
+            <include layout="@layout/shimmer_demo"/>
+        </LinearLayout>
+
+
+
+    </com.facebook.shimmer.ShimmerFrameLayout>
+
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rec"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@id/shmmier"
+        app:layout_constraintStart_toStartOf="@id/shmmier"
+        app:layout_constraintTop_toBottomOf="@id/shmmier" />
+
+
 
 
 
