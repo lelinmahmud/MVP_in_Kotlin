@@ -31,6 +31,7 @@ class RecApapter(
     override fun onBindViewHolder(holder: RecApapterViewHolder, position: Int) {
         Glide.with(context).load(BASE_URL+list.get(position).productImage).into(holder.imageView)
         holder.p_name.text="${list.get(position).productName}"
+        holder.price.text="${list.get(position).price}"
         holder.view.tag= position
         holder.plusBtn.tag=position
 
@@ -51,6 +52,7 @@ class RecApapter(
         val plusBtn=iv.btn_increse
         val minusBtn=iv.btn_decrese
         val addToCart=iv.add_to_cart_tv
+        val price=iv.current_price_tv
 
 
         val itemView=view.setOnClickListener {
@@ -74,14 +76,16 @@ class RecApapter(
 
         val decrese=minusBtn.setOnClickListener {
 
-            if (count==1){
+            if (count==2){
                 minusBtn.setImageResource(R.drawable.ic_delete)
+                minusBtn.visibility=View.VISIBLE
             }
 
-            if (count==0){
-                minusBtn.visibility=View.GONE
+            if (count==1){
                 addToCart.visibility=View.VISIBLE
+                minusBtn.visibility=View.GONE
                 quantity.setText("")
+                count=0
                 return@setOnClickListener
 
             }

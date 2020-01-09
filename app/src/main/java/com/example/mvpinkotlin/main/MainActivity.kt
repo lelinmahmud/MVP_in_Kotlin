@@ -42,7 +42,9 @@ class MainActivity : AppCompatActivity(),
         search_view.setOnQueryTextListener(object :MaterialSearchView.OnQueryTextListener{
             override fun onQueryTextSubmit(query: String?): Boolean {
                 Log.d("searchview","onQueryTextSubmit")
+
                 hideKeyborad()
+
                 return true
             }
 
