@@ -32,6 +32,7 @@ class RecApapter(
         Glide.with(context).load(BASE_URL+list.get(position).productImage).into(holder.imageView)
         holder.p_name.text="${list.get(position).productName}"
         holder.view.tag= position
+        holder.plusBtn.tag=position
 
     }
 
@@ -42,15 +43,51 @@ class RecApapter(
     inner class RecApapterViewHolder(iv: View) :
         RecyclerView.ViewHolder(iv) {
         var view = iv
+        var count=0;
 
         val imageView=iv.offerProductPicId
         val p_name=iv.offerProductId
+        val quantity=iv.tv_in_cart_quantity
+        val plusBtn=iv.btn_increse
+        val minusBtn=iv.btn_decrese
+        val addToCart=iv.add_to_cart_tv
+
 
         val itemView=view.setOnClickListener {
             var position=view.tag.toString().toInt()
 
             Toasty.success(context,"${list.get(position).productName}",Toast.LENGTH_SHORT).show()
             println(position)
+        }
+        val increse=plusBtn.setOnClickListener {
+
+            if (count>=0){
+                minusBtn.setImageResource(R.drawable.ic_minus_2)
+            }
+
+            addToCart.visibility=View.GONE
+            minusBtn.visibility=View.VISIBLE
+            count++
+            quantity.setText(""+count)
+        }
+
+
+        val decrese=minusBtn.setOnClickListener {
+
+            if (count==1){
+                minusBtn.setImageResource(R.drawable.ic_delete)
+            }
+
+            if (count==0){
+                minusBtn.visibility=View.GONE
+                addToCart.visibility=View.VISIBLE
+                quantity.setText("")
+                return@setOnClickListener
+
+            }
+
+            count--
+            quantity.setText(""+count)
         }
 
 

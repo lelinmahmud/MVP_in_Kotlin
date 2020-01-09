@@ -1,16 +1,20 @@
 package com.example.mvpinkotlin.main
 
+import android.app.Activity
+import android.content.Context
 import android.graphics.Color
 import android.os.Bundle
 import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
+import android.view.inputmethod.InputMethodManager
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.example.mvpinkotlin.R
 import com.example.mvpinkotlin.model.CatalogProductsItem
 import com.example.mvpinkotlin.utils.GridSpacingItemDecoration
+import com.example.mvpinkotlin.utils.ScreenUtils
 import com.miguelcatalan.materialsearchview.MaterialSearchView
 import kotlinx.android.synthetic.main.activity_main.*
 
@@ -38,6 +42,7 @@ class MainActivity : AppCompatActivity(),
         search_view.setOnQueryTextListener(object :MaterialSearchView.OnQueryTextListener{
             override fun onQueryTextSubmit(query: String?): Boolean {
                 Log.d("searchview","onQueryTextSubmit")
+                hideKeyborad()
                 return true
             }
 
@@ -71,11 +76,12 @@ class MainActivity : AppCompatActivity(),
 
 
     override fun setUpRecData(list: ArrayList<CatalogProductsItem>) {
+        var i=13.0
 
         val apapter=RecApapter(this,list)
         rec.layoutManager=StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)
      //   rec.addItemDecoration(DividerItemDecoration(this,GridLayoutManager.HORIZONTAL))
-        rec.addItemDecoration(GridSpacingItemDecoration(2,13,true))
+        rec.addItemDecoration(GridSpacingItemDecoration(2, ScreenUtils.dp2px(this,i.toFloat()), true))
       //  shmmier.stopShimmer();
         rec2.visibility=View.GONE
         rec.adapter=apapter
@@ -111,5 +117,10 @@ class MainActivity : AppCompatActivity(),
             super.onBackPressed();
         }
 
+    }
+
+    fun hideKeyborad(){
+        val inputManager:InputMethodManager = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+        inputManager.hideSoftInputFromWindow(currentFocus!!.windowToken, InputMethodManager.SHOW_FORCED)
     }
 }
