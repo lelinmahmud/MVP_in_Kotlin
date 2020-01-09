@@ -10,6 +10,7 @@ interface MainContact {
         fun setUpRecData(list:ArrayList<CatalogProductsItem>) {
 
         }
+
     }
 
     interface presenter{
