@@ -15,7 +15,7 @@ import es.dmoral.toasty.Toasty
 import kotlinx.android.synthetic.main.sample.view.*
 
 class RecApapter(
-    private val context: Context,
+    private val context: MainActivity,
     private val list: ArrayList<CatalogProductsItem>
 ) : RecyclerView.Adapter<RecApapterViewHolder>() {
 
@@ -71,6 +71,7 @@ class RecApapter(
             minusBtn.visibility=View.VISIBLE
             count++
             quantity.setText(""+count)
+            context.tvCartCount.text="$count"
         }
 
 
@@ -79,6 +80,7 @@ class RecApapter(
             if (count==2){
                 minusBtn.setImageResource(R.drawable.ic_delete)
                 minusBtn.visibility=View.VISIBLE
+                context.tvCartCount.text="$count"
             }
 
             if (count==1){
@@ -86,13 +88,17 @@ class RecApapter(
                 minusBtn.visibility=View.GONE
                 quantity.setText("")
                 count=0
+                context.tvCartCount.text="$count"
                 return@setOnClickListener
 
             }
 
             count--
             quantity.setText(""+count)
+            context.tvCartCount.text="$count"
         }
+
+
 
 
     }

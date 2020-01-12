@@ -30,6 +30,14 @@ class MainPresenter(internal val view: MainContact.view): MainContact.presenter 
             })
     }
 
+    override fun cartItemClicked() {
+        view.cartItemUpdate(5)
+    }
+
+
+    fun updateCart(){
+
+    }
 
 
 }

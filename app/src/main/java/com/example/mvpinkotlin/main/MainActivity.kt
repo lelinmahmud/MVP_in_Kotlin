@@ -10,6 +10,7 @@ import android.view.MenuItem
 import android.view.View
 import android.view.inputmethod.InputMethodManager
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.AppCompatTextView
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.example.mvpinkotlin.R
 import com.example.mvpinkotlin.model.CatalogProductsItem
@@ -24,6 +25,7 @@ class MainActivity : AppCompatActivity(),
 
     lateinit var presenter: MainPresenter
     lateinit var list:ArrayList<CatalogProductsItem>
+    public lateinit var tvCartCount:AppCompatTextView
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -92,6 +94,11 @@ class MainActivity : AppCompatActivity(),
 
     }
 
+    override fun cartItemUpdate(itemCount: Int) {
+
+        tvCartCount.text="0"
+    }
+
 
     fun initToolbar(){
         toolbar.setTitle("Cereals")
@@ -107,6 +114,7 @@ class MainActivity : AppCompatActivity(),
 
         val item: MenuItem = menu!!.findItem(R.id.menu_item_search)
         search_view.setMenuItem(item)
+        refreshCartItem(menu)
 
         return true
     }
@@ -124,5 +132,12 @@ class MainActivity : AppCompatActivity(),
     fun hideKeyborad(){
         val inputManager:InputMethodManager = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
         inputManager.hideSoftInputFromWindow(currentFocus!!.windowToken, InputMethodManager.SHOW_FORCED)
+    }
+
+
+    fun refreshCartItem(menu: Menu){
+        val cart:View=menu.findItem(R.id.menu_item_cart).actionView
+        tvCartCount=cart.findViewById(R.id.tv_notification_count);
+        tvCartCount.text="3"
     }
 }
