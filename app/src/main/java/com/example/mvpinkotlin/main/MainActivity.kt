@@ -14,8 +14,10 @@ import androidx.appcompat.widget.AppCompatTextView
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.example.mvpinkotlin.R
 import com.example.mvpinkotlin.model.CatalogProductsItem
+import com.example.mvpinkotlin.session.SharedPrefarenceImpSession
 import com.example.mvpinkotlin.utils.GridSpacingItemDecoration
 import com.example.mvpinkotlin.utils.ScreenUtils
+import com.google.gson.Gson
 import com.miguelcatalan.materialsearchview.MaterialSearchView
 import kotlinx.android.synthetic.main.activity_main.*
 
@@ -25,13 +27,16 @@ class MainActivity : AppCompatActivity(),
 
     lateinit var presenter: MainPresenter
     lateinit var list:ArrayList<CatalogProductsItem>
+    lateinit var session: SharedPrefarenceImpSession
     public lateinit var tvCartCount:AppCompatTextView
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         presenter= MainPresenter(this)
+        session= SharedPrefarenceImpSession(this)
         list= ArrayList()
-        //shmmier.startShimmer()
+
+
 
         presenter.data()
         initToolbar()
@@ -84,19 +89,16 @@ class MainActivity : AppCompatActivity(),
 
         val apapter=RecApapter(this,list)
         rec.layoutManager=StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)
-     //   rec.addItemDecoration(DividerItemDecoration(this,GridLayoutManager.HORIZONTAL))
         rec.addItemDecoration(GridSpacingItemDecoration(2, ScreenUtils.dp2px(this,i.toFloat()), true))
-      //  shmmier.stopShimmer();
         rec2.visibility=View.GONE
         rec.adapter=apapter
-     //   shmmier.visibility=View.GONE
         rec.visibility=View.VISIBLE
 
     }
 
     override fun cartItemUpdate(itemCount: Int) {
 
-        tvCartCount.text="0"
+        tvCartCount.text="${session.getAllProducts()?.size}"
     }
 
 
@@ -138,6 +140,6 @@ class MainActivity : AppCompatActivity(),
     fun refreshCartItem(menu: Menu){
         val cart:View=menu.findItem(R.id.menu_item_cart).actionView
         tvCartCount=cart.findViewById(R.id.tv_notification_count);
-        tvCartCount.text="3"
+        tvCartCount.text="${session.getAllProducts()?.size}"
     }
 }

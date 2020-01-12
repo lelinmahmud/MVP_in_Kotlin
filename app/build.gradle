@@ -57,6 +57,8 @@ dependencies {
     annotationProcessor 'com.github.bumptech.glide:compiler:4.10.0'
     implementation 'com.facebook.shimmer:shimmer:0.5.0'
     implementation 'com.miguelcatalan:materialsearchview:1.4.0'
+    implementation 'com.google.code.gson:gson:2.8.5'
+
 
 
 

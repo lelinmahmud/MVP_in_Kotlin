@@ -3,12 +3,13 @@ package com.example.mvpinkotlin.main
 import com.example.mvpinkotlin.model.CatalogProductsItem
 import com.example.mvpinkotlin.model.Response
 import com.example.mvpinkotlin.network.Repisitory
+import com.example.mvpinkotlin.session.SharedPrefarenceImpSession
 import retrofit2.Call
 import retrofit2.Callback
 
 class MainPresenter(internal val view: MainContact.view): MainContact.presenter {
 
-
+    lateinit var session: SharedPrefarenceImpSession
 
 
     override fun data() {
@@ -36,7 +37,7 @@ class MainPresenter(internal val view: MainContact.view): MainContact.presenter 
 
 
     fun updateCart(){
-
+        session.getAllProducts()?.size?.let { view.cartItemUpdate(it) }
     }
 
 

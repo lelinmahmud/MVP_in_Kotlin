@@ -1,16 +1,15 @@
 package com.example.mvpinkotlin.main
 
-import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.mvpinkotlin.R
 import com.example.mvpinkotlin.main.RecApapter.RecApapterViewHolder
 import com.example.mvpinkotlin.model.CatalogProductsItem
+import com.example.mvpinkotlin.session.SharedPrefarenceImpSession
 import es.dmoral.toasty.Toasty
 import kotlinx.android.synthetic.main.sample.view.*
 
@@ -20,6 +19,7 @@ class RecApapter(
 ) : RecyclerView.Adapter<RecApapterViewHolder>() {
 
     private  val BASE_URL="http://www.meenaclick.com/back_end/assets/product_images/"
+    private val session=SharedPrefarenceImpSession(context)
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecApapterViewHolder {
@@ -34,6 +34,7 @@ class RecApapter(
         holder.price.text="${list.get(position).price}"
         holder.view.tag= position
         holder.plusBtn.tag=position
+        holder.minusBtn.tag=position
 
     }
 
@@ -62,7 +63,7 @@ class RecApapter(
             println(position)
         }
         val increse=plusBtn.setOnClickListener {
-
+            var positions=plusBtn.tag.toString().toInt()
             if (count>=0){
                 minusBtn.setImageResource(R.drawable.ic_minus_2)
             }
@@ -71,31 +72,34 @@ class RecApapter(
             minusBtn.visibility=View.VISIBLE
             count++
             quantity.setText(""+count)
-            context.tvCartCount.text="$count"
+            session.addProduct(list.get(positions))
+
+            context.tvCartCount.text="${session.getAllProducts()?.size}"
         }
 
 
         val decrese=minusBtn.setOnClickListener {
+            var positions=minusBtn.tag.toString().toInt()
 
             if (count==2){
                 minusBtn.setImageResource(R.drawable.ic_delete)
                 minusBtn.visibility=View.VISIBLE
-                context.tvCartCount.text="$count"
             }
 
             if (count==1){
                 addToCart.visibility=View.VISIBLE
                 minusBtn.visibility=View.GONE
                 quantity.setText("")
+                session.removeProduct(list.get(positions))
+                context.tvCartCount.text="${session.getAllProducts()?.size}"
+
                 count=0
-                context.tvCartCount.text="$count"
                 return@setOnClickListener
 
             }
 
             count--
             quantity.setText(""+count)
-            context.tvCartCount.text="$count"
         }
 
 
