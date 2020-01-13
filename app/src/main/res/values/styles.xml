@@ -12,5 +12,10 @@
         <item name="colorControlNormal">@color/white</item>
         <item name="android:textColorSecondary">@color/colorAccent</item>
     </style>
+    <style name="Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense">
+        <item name="android:theme">
+            @style/ThemeOverlay.MaterialComponents.TextInputEditText.OutlinedBox.Dense
+        </item>
+    </style>
 
 </resources>

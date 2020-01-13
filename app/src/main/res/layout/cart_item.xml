@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="@dimen/_3sdp"
+    app:cardCornerRadius="0dp"
+    android:elevation="0dp">
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:layout_width="@dimen/_90sdp"
+            android:layout_height="@dimen/_90sdp"
+            android:id="@+id/iv_image_cart"
+            android:layout_marginStart="8dp"
+            android:layout_marginBottom="8dp"
+            android:src="@drawable/demo"
+            app:layout_constraintTop_toTopOf="@id/iv_delete"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"/>
+
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/delete"
+            android:id="@+id/iv_delete"
+            android:layout_marginTop="@dimen/_12sdp"
+            android:padding="@dimen/_3sdp"
+            app:layout_constraintEnd_toEndOf="@id/iv_plus"
+            app:layout_constraintTop_toTopOf="parent"
+            />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/plus"
+            android:id="@+id/iv_plus"
+            android:layout_marginEnd="@dimen/_14sdp"
+            android:layout_marginBottom="@dimen/_14sdp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/minus"
+            android:id="@+id/iv_minus"
+            app:layout_constraintTop_toTopOf="@id/iv_plus"
+            app:layout_constraintEnd_toStartOf="@id/tv_cart_count"
+            android:layout_marginEnd="@dimen/_24sdp"
+
+            />
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/_24sdp"
+            android:text="1"
+            android:id="@+id/tv_cart_count"
+            android:textColor="@color/greyish_brown"
+            android:textSize="18sp"
+            app:layout_constraintTop_toTopOf="@id/iv_plus"
+            app:layout_constraintBottom_toBottomOf="@id/iv_plus"
+            app:layout_constraintEnd_toStartOf="@id/iv_plus"/>
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:maxLines="2"
+            android:text="Mutton"
+            android:textColor="@color/black"
+            android:textSize="12sp"
+            android:id="@+id/tv_name"
+            android:layout_marginStart="@dimen/_8sdp"
+            android:layout_marginEnd="@dimen/_8sdp"
+            app:layout_constraintEnd_toStartOf="@id/iv_delete"
+            app:layout_constraintStart_toEndOf="@id/iv_image_cart"
+            app:layout_constraintTop_toTopOf="@id/iv_image_cart"/>
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/tv_weight"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:text="1.00 KG"
+            app:layout_constraintStart_toEndOf="@id/iv_image_cart"
+            app:layout_constraintTop_toBottomOf="@id/tv_name"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:id="@+id/tv_tk_sign"
+            android:text="@string/taka_sign"
+            android:textColor="@color/greyish_brown"
+            android:textSize="15sp"
+            app:layout_constraintTop_toBottomOf="@id/tv_weight"
+            app:layout_constraintStart_toEndOf="@id/iv_image_cart"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:text="500"
+            android:textColor="@color/greyish_brown"
+            android:textSize="15sp"
+            app:layout_constraintStart_toEndOf="@id/tv_tk_sign"
+            app:layout_constraintTop_toTopOf="@id/tv_tk_sign"
+            app:layout_constraintBottom_toBottomOf="@id/tv_tk_sign"/>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.cardview.widget.CardView>
