@@ -35,6 +35,12 @@ class MainPresenter(internal val view: MainContact.view): MainContact.presenter 
         view.cartItemUpdate(5)
     }
 
+    override fun cartButtonClicked() {
+
+        view.navigateToActivity()
+
+    }
+
 
     fun updateCart(){
         session.getAllProducts()?.size?.let { view.cartItemUpdate(it) }

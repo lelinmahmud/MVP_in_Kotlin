@@ -35,6 +35,7 @@ class RecApapter(
         holder.view.tag= position
         holder.plusBtn.tag=position
         holder.minusBtn.tag=position
+        holder.addToCart.tag=position
 
     }
 
@@ -59,7 +60,7 @@ class RecApapter(
         val itemView=view.setOnClickListener {
             var position=view.tag.toString().toInt()
 
-            Toasty.success(context,"${list.get(position).productName}",Toast.LENGTH_SHORT).show()
+//            Toasty.success(context,"${list.get(position).productName}",Toast.LENGTH_SHORT).show()
             println(position)
         }
         val increse=plusBtn.setOnClickListener {
@@ -72,8 +73,6 @@ class RecApapter(
             minusBtn.visibility=View.VISIBLE
             count++
             quantity.setText(""+count)
-            session.addProduct(list.get(positions))
-
             context.tvCartCount.text="${session.getAllProducts()?.size}"
         }
 
@@ -100,6 +99,17 @@ class RecApapter(
 
             count--
             quantity.setText(""+count)
+        }
+
+        val addtoCartBtn=addToCart.setOnClickListener {
+            var positions=addToCart.tag.toString().toInt()
+            session.addProduct(list.get(positions))
+            context.tvCartCount.text="${session.getAllProducts()?.size}"
+            addToCart.visibility=View.GONE
+            minusBtn.visibility=View.VISIBLE
+            quantity.setText(""+count)
+
+
         }
 
 

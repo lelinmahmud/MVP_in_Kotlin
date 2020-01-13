@@ -2,6 +2,7 @@ package com.example.mvpinkotlin.main
 
 import android.app.Activity
 import android.content.Context
+import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
 import android.util.Log
@@ -9,12 +10,14 @@ import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import android.view.inputmethod.InputMethodManager
+import android.widget.ImageButton
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.AppCompatTextView
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.example.mvpinkotlin.R
 import com.example.mvpinkotlin.model.CatalogProductsItem
 import com.example.mvpinkotlin.session.SharedPrefarenceImpSession
+import com.example.mvpinkotlin.shoppingCart.ShopingCartActivity
 import com.example.mvpinkotlin.utils.GridSpacingItemDecoration
 import com.example.mvpinkotlin.utils.ScreenUtils
 import com.google.gson.Gson
@@ -97,8 +100,16 @@ class MainActivity : AppCompatActivity(),
     }
 
     override fun cartItemUpdate(itemCount: Int) {
-
+        if (session.getAllProducts().size==0){
+            tvCartCount.visibility=View.GONE
+            return
+        }
         tvCartCount.text="${session.getAllProducts()?.size}"
+    }
+
+    override fun navigateToActivity() {
+
+        startActivity(Intent(this,ShopingCartActivity::class.java))
     }
 
 
@@ -140,6 +151,17 @@ class MainActivity : AppCompatActivity(),
     fun refreshCartItem(menu: Menu){
         val cart:View=menu.findItem(R.id.menu_item_cart).actionView
         tvCartCount=cart.findViewById(R.id.tv_notification_count);
+        val btnCart=cart.findViewById<ImageButton>(R.id.button_cart)
+
+
+        if (session.getAllProducts().size==0){
+            tvCartCount.visibility=View.GONE
+            return
+        }
         tvCartCount.text="${session.getAllProducts()?.size}"
+
+        btnCart.setOnClickListener {
+            presenter.cartButtonClicked()
+        }
     }
 }

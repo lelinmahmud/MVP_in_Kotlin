@@ -9,12 +9,14 @@ interface MainContact {
     interface view {
         fun setUpRecData(list:ArrayList<CatalogProductsItem>)
         fun cartItemUpdate(itemCount:Int)
+        fun navigateToActivity()
 
     }
 
     interface presenter{
         fun data()
         fun cartItemClicked()
+        fun cartButtonClicked()
     }
 
 }
