@@ -13,6 +13,7 @@
         android:layout_height="wrap_content">
 
         <ImageView
+
             android:layout_width="@dimen/_90sdp"
             android:layout_height="@dimen/_90sdp"
             android:id="@+id/iv_image_cart"
@@ -91,7 +92,7 @@
             android:id="@+id/tv_weight"
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
-            android:text="1.00 KG"
+            android:text="1.00 EA"
             app:layout_constraintStart_toEndOf="@id/iv_image_cart"
             app:layout_constraintTop_toBottomOf="@id/tv_name"
             />
@@ -116,6 +117,7 @@
             android:text="500"
             android:textColor="@color/greyish_brown"
             android:textSize="15sp"
+            android:id="@+id/tv_price"
             app:layout_constraintStart_toEndOf="@id/tv_tk_sign"
             app:layout_constraintTop_toTopOf="@id/tv_tk_sign"
             app:layout_constraintBottom_toBottomOf="@id/tv_tk_sign"/>

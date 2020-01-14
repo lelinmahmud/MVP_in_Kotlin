@@ -154,14 +154,29 @@ class MainActivity : AppCompatActivity(),
         val btnCart=cart.findViewById<ImageButton>(R.id.button_cart)
 
 
-        if (session.getAllProducts().size==0){
-            tvCartCount.visibility=View.GONE
-            return
-        }
-        tvCartCount.text="${session.getAllProducts()?.size}"
+        updateCountCartBadge()
 
         btnCart.setOnClickListener {
             presenter.cartButtonClicked()
         }
     }
+
+    fun updateCountCartBadge(){
+        if (session.getAllProducts().size==0){
+            tvCartCount.visibility=View.GONE
+
+        }
+        else{
+            tvCartCount.visibility=View.VISIBLE
+            tvCartCount.text="${session.getAllProducts()?.size}"
+
+        }
+
+    }
+
+    override fun onResume() {
+        super.onResume()
+    }
+
+
 }

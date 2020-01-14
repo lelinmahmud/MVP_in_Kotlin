@@ -116,5 +116,7 @@ data class CatalogProductsItem(
 	val maxInCart: Any? = null,
 
 	@field:SerializedName("is_feature_product")
-	val isFeatureProduct: Int? = null
+	val isFeatureProduct: Int? = null,
+
+	var qty:Int? = null
 )

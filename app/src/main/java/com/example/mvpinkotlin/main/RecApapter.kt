@@ -3,14 +3,13 @@ package com.example.mvpinkotlin.main
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
+import androidx.appcompat.widget.AppCompatTextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.mvpinkotlin.R
 import com.example.mvpinkotlin.main.RecApapter.RecApapterViewHolder
 import com.example.mvpinkotlin.model.CatalogProductsItem
 import com.example.mvpinkotlin.session.SharedPrefarenceImpSession
-import es.dmoral.toasty.Toasty
 import kotlinx.android.synthetic.main.sample.view.*
 
 class RecApapter(
@@ -43,7 +42,9 @@ class RecApapter(
         return list.size
     }
 
-    inner class RecApapterViewHolder(iv: View) :
+    inner class RecApapterViewHolder(
+        iv: View
+    ) :
         RecyclerView.ViewHolder(iv) {
         var view = iv
         var count=0;
@@ -57,6 +58,7 @@ class RecApapter(
         val price=iv.current_price_tv
 
 
+
         val itemView=view.setOnClickListener {
             var position=view.tag.toString().toInt()
 
@@ -65,9 +67,10 @@ class RecApapter(
         }
         val increse=plusBtn.setOnClickListener {
             var positions=plusBtn.tag.toString().toInt()
-            if (count>=0){
+            if (count>=1){
                 minusBtn.setImageResource(R.drawable.ic_minus_2)
             }
+
 
             addToCart.visibility=View.GONE
             minusBtn.visibility=View.VISIBLE
@@ -104,6 +107,7 @@ class RecApapter(
         val addtoCartBtn=addToCart.setOnClickListener {
             var positions=addToCart.tag.toString().toInt()
             session.addProduct(list.get(positions))
+            context.tvCartCount.visibility=View.VISIBLE
             context.tvCartCount.text="${session.getAllProducts()?.size}"
             addToCart.visibility=View.GONE
             minusBtn.visibility=View.VISIBLE
