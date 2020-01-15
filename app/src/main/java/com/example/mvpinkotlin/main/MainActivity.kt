@@ -90,7 +90,7 @@ class MainActivity : AppCompatActivity(),
     override fun setUpRecData(list: ArrayList<CatalogProductsItem>) {
         var i=13.0
 
-        val apapter=RecApapter(this,list)
+        val apapter=RecApapter(this,list,presenter)
         rec.layoutManager=StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)
         rec.addItemDecoration(GridSpacingItemDecoration(2, ScreenUtils.dp2px(this,i.toFloat()), true))
         rec2.visibility=View.GONE
@@ -140,6 +140,13 @@ class MainActivity : AppCompatActivity(),
             super.onBackPressed();
         }
 
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        if (item.itemId==android.R.id.home){
+            finish()
+        }
+        return true
     }
 
     fun hideKeyborad(){

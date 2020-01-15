@@ -1,5 +1,6 @@
 package com.example.mvpinkotlin.main
 
+import android.content.Context
 import com.example.mvpinkotlin.model.CatalogProductsItem
 import com.example.mvpinkotlin.model.Response
 import com.example.mvpinkotlin.network.Repisitory
@@ -7,6 +8,7 @@ import com.example.mvpinkotlin.session.SharedPrefarenceImpSession
 import retrofit2.Call
 import retrofit2.Callback
 
+@Suppress("UNCHECKED_CAST")
 class MainPresenter(internal val view: MainContact.view): MainContact.presenter {
 
     lateinit var session: SharedPrefarenceImpSession
@@ -24,7 +26,7 @@ class MainPresenter(internal val view: MainContact.view): MainContact.presenter 
                     response: retrofit2.Response<Response>
                 ) {
                     if (response.body()?.status!!){
-                        view.setUpRecData(response.body()!!.catalogProducts as ArrayList<CatalogProductsItem>)
+                        view.setUpRecData(response.body()?.catalogProducts as ArrayList<CatalogProductsItem>)
                     }
                 }
 
@@ -44,6 +46,18 @@ class MainPresenter(internal val view: MainContact.view): MainContact.presenter 
 
     fun updateCart(){
         session.getAllProducts()?.size?.let { view.cartItemUpdate(it) }
+    }
+
+
+    fun updateQty(productsItem: CatalogProductsItem,qty:Int,context: Context){
+        val session=SharedPrefarenceImpSession(context)
+        session.addProductWithQunatity(productsItem,qty)
+
+    }
+
+    fun deleteProduct(item: CatalogProductsItem,context: Context){
+        var sessio=SharedPrefarenceImpSession(context)
+        sessio.remove(item)
     }
 
 
